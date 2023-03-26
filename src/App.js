@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 
 // Components
 import Navbar from "./components/Navbar";
+import { buyTicketOperation, endGameOperation } from "./utils/operation";
+import { fetchStorage } from "./utils/tzkt";
 
 const App = () => {
   // Players holding lottery tickets
@@ -13,16 +15,36 @@ const App = () => {
   useEffect(() => {
     // TODO 9 - Fetch players and tickets remaining from storage
     (async () => {
-      setPlayers([]);
-      setTickets(3);
+      const storage = await fetchStorage();
+      setPlayers(Object.values(storage.players));
+      setTickets(storage.tickets_available);
     })();
   }, []);
 
   // TODO 7.a - Complete onBuyTicket function
-  const onBuyTicket = async () => {};
+  const onBuyTicket = async () => {
+    try {
+      setLoading(true);
+      await buyTicketOperation();
+      alert("successfull transaction !!")
+    } catch (error) {
+      throw error;
+    }
+    setLoading(false);
+   
+  };
 
   // TODO 11.a - Complete onEndGame function
-  const onEndGame = async () => {};
+  const onEndGame = async () => {
+    try {
+        setLoading(true);
+        await endGameOperation();
+        alert("successfull transaction !!")
+    } catch (error) {
+      throw error;
+    }
+    setLoading(false);
+  };
 
   return (
     <div className="h-100">
@@ -32,16 +54,18 @@ const App = () => {
         <div className="py-1">Tickets remaining: {tickets}</div>
         {/* Action Buttons */}
         {tickets > 0 ? (
-          <button className="btn btn-primary btn-lg">
+          <button onClick={onBuyTicket} className="btn btn-primary btn-lg">
             {/* TODO 7.b - Call onBuyTicket on click */}
             {/* TODO 7.c - Show "loading..." when buying operation is pending */}
-            Buy Ticket
+            {loading ? "Loading.." : "Buy Ticket"}
+            
           </button>
         ) : (
-          <button className="btn btn-success btn-lg">
+          <button onClick={onEndGame} className="btn btn-success btn-lg">
             {/* TODO 11.b - Call onEndGame on click */}
             {/* TODO 11.c - Show "loading..." when buying operation is pending */}
-            End Game
+            {loading ? "Loading..." : "End Game "}
+            
           </button>
         )}
         {/* List of Players */}
