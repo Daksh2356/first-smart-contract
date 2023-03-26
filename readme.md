@@ -10,6 +10,6 @@ In the project directory, you can run:
 
 ## NFT Contracts
 
-Ghostnet contract : KT1BvDpFiKfMPpiqkwko7cNjuJQMqCeEQ76P
+It is a ghostnet contract on tezos blockchain
 
 RPC URL : https://ghostnet.smartpy.io
