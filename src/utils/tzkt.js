@@ -4,6 +4,6 @@ import axios from "axios";
 
 export const fetchStorage = async () => {
 
-    const res = await axios.get(`https://api.ghostnet.tzkt.io/v1/contracts/${process.env.REACT_APP_API_KEY}/storage`);
+    const res = await axios.get("https://api.ghostnet.tzkt.io/v1/contracts/KT1BvDpFiKfMPpiqkwko7cNjuJQMqCeEQ76P/storage");
     return res.data;
 };
