@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div className="h-100">
+    <div style={{     }} className="h-100">
       <Navbar />
       <div className="d-flex flex-column justify-content-center align-items-center h-100">
         {/* Ticket remaining display */}

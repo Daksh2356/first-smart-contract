@@ -4,9 +4,9 @@ import { tezos } from "./tezos";
 
 export const buyTicketOperation = async () => {
     try {
-        const contract = await tezos.wallet.at("KT1BvDpFiKfMPpiqkwko7cNjuJQMqCeEQ76P");
+        const contract = await tezos.wallet.at("KT1Qv5wVgps3xCsPtTq8vmDB5niKisB37Bog");
         const op = await contract.methods.buy_ticket().send({
-            amount:1,
+            amount:2,
             mutez:false
         })
         await op.confirmation(1);
@@ -21,7 +21,7 @@ export const buyTicketOperation = async () => {
 export const endGameOperation = async () => {
 try{
 
-    const contract = await tezos.wallet.at("KT1BvDpFiKfMPpiqkwko7cNjuJQMqCeEQ76P");
+    const contract = await tezos.wallet.at("KT1Qv5wVgps3xCsPtTq8vmDB5niKisB37Bog");
     const randomNumber = Math.random(Math.random()*1000)
     const op = await contract.methods.end_game(randomNumber).send()
     await op.confirmation(1);
