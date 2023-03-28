@@ -6,12 +6,12 @@ export const wallet = new BeaconWallet({
   preferredNetwork: "ghostnet",
 });
 
-// TODO 2.b - Complete connectWallet function (for ghostnet)
+
 export const connectWallet = async () => {
   await wallet.requestPermissions({ network: { type: "ghostnet" } });
 };
 
-// TODO 2.c - Complete getAccount function
+
 export const getAccount = async () => {
   const connectedWallet = await wallet.client.getActiveAccount();
   if (connectedWallet) {
